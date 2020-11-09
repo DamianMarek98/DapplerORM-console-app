@@ -8,7 +8,7 @@
     <ProjectGuid>{9CCF14E0-4121-4B9C-A024-16F27ADB884A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>NHibernate</RootNamespace>
-    <AssemblyName>NHibernate</AssemblyName>
+    <AssemblyName>ORMApp</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
