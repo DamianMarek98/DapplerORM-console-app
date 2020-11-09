@@ -4,36 +4,7 @@
     <projectFile>NHibernate/NHibernate.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfd73718-18f0-4f8e-a8a1-2775397d94d7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NHibernate/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NHibernate/.idea/contentModel.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NHibernate/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NHibernate/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NHibernate/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NHibernate/.idea/projectSettingsUpdater.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NHibernate/.idea/sqldialects.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NHibernate/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NHibernate/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NHibernate/riderModule.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate.sln" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/App.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/Model/Client.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/Model/InternetClient.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/Model/Object.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/Model/PhysicalClient.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/NHibernate.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/Properties/AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/Repo/IClientRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/Repo/IObjectRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/Repo/InternetClientRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/Repo/ObjectRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/Repo/PhysicalClientRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/Services/BaseRepo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/Services/ClientService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/UserInterface.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NHibernate/packages.config" beforeDir="false" />
-    </list>
+    <list default="true" id="cfd73718-18f0-4f8e-a8a1-2775397d94d7" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,6 +12,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/ORMApp/packages.config" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -104,6 +78,7 @@
       <updated>1604945752958</updated>
       <workItem from="1604945757504" duration="14065000" />
       <workItem from="1604961929662" duration="162000" />
+      <workItem from="1604962186757" duration="223000" />
     </task>
     <task id="LOCAL-00001" summary="Added client and object models">
       <created>1604961249171</created>
@@ -147,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604961393889</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Project name change">
+      <created>1604962341612</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1604962341612</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,7 +146,8 @@
     <MESSAGE value="added simple services" />
     <MESSAGE value="added class with console user interface to interact with app" />
     <MESSAGE value="added project initial files" />
-    <option name="LAST_COMMIT_MESSAGE" value="added project initial files" />
+    <MESSAGE value="Project name change" />
+    <option name="LAST_COMMIT_MESSAGE" value="Project name change" />
   </component>
   <component name="WindowStateProjectService">
     <state x="348" y="366" key="#SQL_Dialects" timestamp="1604947715126">
@@ -175,26 +158,26 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="552" y="183" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1604947723902" />
-    <state x="404" y="103" key="CommitChangelistDialog2" timestamp="1604961393231">
+    <state x="404" y="103" key="CommitChangelistDialog2" timestamp="1604962340781">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="404" y="103" key="CommitChangelistDialog2/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1604961393231" />
-    <state width="1877" height="379" key="GridCell.Tab.0.bottom" timestamp="1604961869093">
+    <state x="404" y="103" key="CommitChangelistDialog2/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1604962340781" />
+    <state width="1877" height="375" key="GridCell.Tab.0.bottom" timestamp="1604962417089">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="379" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1604961869093" />
-    <state width="1877" height="379" key="GridCell.Tab.0.center" timestamp="1604961869093">
+    <state width="1877" height="375" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1604962417089" />
+    <state width="1877" height="375" key="GridCell.Tab.0.center" timestamp="1604962417089">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="379" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1604961869093" />
-    <state width="1877" height="379" key="GridCell.Tab.0.left" timestamp="1604961869093">
+    <state width="1877" height="375" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1604962417089" />
+    <state width="1877" height="375" key="GridCell.Tab.0.left" timestamp="1604962417089">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="379" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1604961869093" />
-    <state width="1877" height="379" key="GridCell.Tab.0.right" timestamp="1604961869093">
+    <state width="1877" height="375" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1604962417089" />
+    <state width="1877" height="375" key="GridCell.Tab.0.right" timestamp="1604962417089">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="379" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1604961869093" />
+    <state width="1877" height="375" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1604962417089" />
     <state width="1877" height="379" key="GridCell.Tab.1.bottom" timestamp="1604961869093">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -267,9 +250,9 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="785" y="226" key="RiderGenerateDialog/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1604954851731" />
-    <state x="552" y="258" key="Vcs.Push.Dialog.v2" timestamp="1604961395707">
+    <state x="552" y="258" key="Vcs.Push.Dialog.v2" timestamp="1604962343351">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="552" y="258" key="Vcs.Push.Dialog.v2/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1604961395707" />
+    <state x="552" y="258" key="Vcs.Push.Dialog.v2/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1604962343351" />
   </component>
 </project>
