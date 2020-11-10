@@ -10,8 +10,10 @@
         <e p="Model" t="Include">
           <e p="Client.cs" t="Include" />
           <e p="InternetClient.cs" t="Include" />
+          <e p="InternetOrder.cs" t="Include" />
           <e p="Object.cs" t="Include" />
           <e p="Order.cs" t="Include" />
+          <e p="OrderObject.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive" />
         <e p="ORMApp.csproj" t="IncludeRecursive" />
@@ -24,8 +26,11 @@
           <e p="ClientRepository.cs" t="Include" />
           <e p="IClientRepository.cs" t="Include" />
           <e p="InternetClientRepository.cs" t="Include" />
+          <e p="InternetOrderRepository.cs" t="Include" />
           <e p="IObjectRepository.cs" t="Include" />
+          <e p="IOrderRepository.cs" t="Include" />
           <e p="ObjectRepository.cs" t="Include" />
+          <e p="OrderRepository.cs" t="Include" />
         </e>
         <e p="Services" t="Include">
           <e p="BaseRepo.cs" t="Include" />

@@ -57,6 +57,27 @@ namespace NHibernate.Services
                     FOREIGN KEY (ClientId) REFERENCES Client (ID)
                 )");
                 
+                cnn.Execute(@"create table Order
+                (
+                    ID                                  INTEGER PRIMARY KEY AUTOINCREMENT,
+                    ClientId                            integer,
+                    Completed                           bit,
+                    
+                    FOREIGN KEY (ClientId) REFERENCES Client (ID)
+                )");
+                
+                cnn.Execute(@"create table OrderObject
+                (
+                    ID                                  INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Amount                              integer,
+                    ObjectId                            integer,
+                    OrderId                             integer,
+                    IpAddress                           varchar(100),
+                    
+                    FOREIGN KEY (ObjectId) REFERENCES Object (ID),
+                    FOREIGN KEY (OrderId) REFERENCES Order (ID)
+                )");
+                
             }
         }
     }
