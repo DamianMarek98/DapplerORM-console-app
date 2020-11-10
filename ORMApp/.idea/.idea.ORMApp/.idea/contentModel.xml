@@ -11,7 +11,7 @@
           <e p="Client.cs" t="Include" />
           <e p="InternetClient.cs" t="Include" />
           <e p="Object.cs" t="Include" />
-          <e p="PhysicalClient.cs" t="Include" />
+          <e p="Order.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive" />
         <e p="ORMApp.csproj" t="IncludeRecursive" />
@@ -21,11 +21,11 @@
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
         <e p="Repo" t="Include">
+          <e p="ClientRepository.cs" t="Include" />
           <e p="IClientRepository.cs" t="Include" />
           <e p="InternetClientRepository.cs" t="Include" />
           <e p="IObjectRepository.cs" t="Include" />
           <e p="ObjectRepository.cs" t="Include" />
-          <e p="PhysicalClientRepository.cs" t="Include" />
         </e>
         <e p="Services" t="Include">
           <e p="BaseRepo.cs" t="Include" />

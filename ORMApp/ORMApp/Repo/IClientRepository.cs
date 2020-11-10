@@ -3,11 +3,11 @@ using NHibernate.Model;
 
 namespace NHibernate.Repo
 {
-    public interface IClientRepository<T> where T : Client
+    public interface IClientRepository
     {
-        T GetClient(int id);
-        void AddClient(T client);
-
-        List<T> GetAllClientsContaining(string str);
+        Client GetClient(int id);
+        void AddClient(Client client);
+        
+        
     }
 }

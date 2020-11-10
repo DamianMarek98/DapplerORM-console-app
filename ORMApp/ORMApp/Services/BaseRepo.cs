@@ -25,9 +25,8 @@ namespace NHibernate.Services
                 {
                     cnn.Open();
                     cnn.Execute("DROP table Object;");
-                    cnn.Execute("DROP table PhysicalClient;");
                     cnn.Execute("DROP table InternetClient;");
-                    
+                    cnn.Execute("DROP table Client;");
                 }
             }
             
@@ -36,13 +35,13 @@ namespace NHibernate.Services
                 cnn.Open();
                 cnn.Execute(@"create table Object
                 (
-                    ID                                  INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Description                           varchar(100),
-                    Price                            integer,
+                    ID                               INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Description                     varchar(100),
+                    Price                           integer,
                     InStock                         integer
                 )");
                 
-                cnn.Execute(@"create table PhysicalClient
+                cnn.Execute(@"create table Client
                 (
                     ID                                  INTEGER PRIMARY KEY AUTOINCREMENT,
                     Name                                varchar(100),
@@ -52,10 +51,12 @@ namespace NHibernate.Services
                 cnn.Execute(@"create table InternetClient
                 (
                     ID                                  INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Name                                varchar(100),
-                    Address                             varchar(100),
-                    IpAddress                           varchar(100)
+                    ClientId                            integer,
+                    IpAddress                           varchar(100),
+                    
+                    FOREIGN KEY (ClientId) REFERENCES Client (ID)
                 )");
+                
             }
         }
     }

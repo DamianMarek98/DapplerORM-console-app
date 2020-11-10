@@ -2,11 +2,7 @@
 {
     public class InternetClient : Client
     {
+        new
         public string IpAddress { get; set; }
-        
-        public override int HowMuchOrdered()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using NHibernate.Model;
+using NHibernate.Repo;
 using NHibernate.Services;
 
 namespace NHibernate
 {
     public class UserInterface
     {
-        private Tuple<Int64, string> _activeClient;
-        private List<Tuple<Int64, string>> _clients = new List<Tuple<long, string>>();
-        private ClientService _clientService = new ClientService();
+        private Client _activeClient;
+        private List<Client> _clients = new List<Client>();
+        private readonly ClientRepository _clientRepository = new ClientRepository();
 
         public void Start()
         {
@@ -17,7 +19,7 @@ namespace NHibernate
             {
                 DiplayBasicMenu();
 
-                ConsoleKeyInfo currentKey = Console.ReadKey(true);
+                var currentKey = Console.ReadKey(true);
                 switch (currentKey.Key)
                 {
                     case ConsoleKey.C:
@@ -35,16 +37,16 @@ namespace NHibernate
 
         private void ClientSelection()
         {
-            bool exit = false;
-            string findLetters = "";
+            var exit = false;
+            var findLetters = "";
             while (!exit)
             {
-                _clients = _clientService.GetAllClientsWithNameContaining(findLetters);
+                _clients = ClientService.GetAllClientsContaining(findLetters);
                 int iter = 0;
                 Console.WriteLine("10 Clients: (Filter string: "+ findLetters +")");
                 foreach (var client in _clients)
                 {
-                    Console.Out.WriteLine(iter + ". name: " + client.Item2);
+                    Console.Out.WriteLine(iter + ". name: " + client.Name);
                     iter++;
                 }
                 
@@ -80,7 +82,7 @@ namespace NHibernate
         private void DiplayBasicMenu()
         {
             Console.WriteLine("");
-            Console.WriteLine("Active client - " + ((_activeClient != null) ? _activeClient.Item2 : "not selected!"));
+            Console.WriteLine("Active client - " + ((_activeClient != null) ? _activeClient.Name : "not selected!"));
             Console.WriteLine("Press c for selecting active client");
             Console.WriteLine("Press x to unselect client");
         }

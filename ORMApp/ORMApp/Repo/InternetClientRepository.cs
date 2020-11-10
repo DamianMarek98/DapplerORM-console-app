@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using Dapper;
 using NHibernate.Model;
@@ -7,22 +6,9 @@ using NHibernate.Services;
 
 namespace NHibernate.Repo
 {
-    public class InternetClientRepository : IClientRepository<InternetClient>
+    public class InternetClientRepository
     {
-        public InternetClient GetClient(int id)
-        {
-            if (!File.Exists(BaseRepo.DbFIle)) return null;
-
-            using (var cnn = BaseRepo.DbConnection())
-            {
-                cnn.Open();
-                var result = cnn.Query<InternetClient>(
-                    @"SELECT * FROM InternetClient WHERE Id = @id", new {id}).FirstOrDefault();
-                return result;
-            }
-        }
-
-        public void AddClient(InternetClient client)
+        public void AddInternetClient(InternetClient InternetClient)
         {
             if (!File.Exists(BaseRepo.DbFIle))
             {
@@ -33,27 +19,12 @@ namespace NHibernate.Repo
             {
                 cnn.Open();
                 string sql =
-                    "INSERT INTO InternetClient (Name, Address, IpAddress) Values (@Name, @Address, @IpAddress);";
+                    "INSERT INTO Client (Name, Address) Values (@Name, @Address);";
 
-                cnn.Execute(sql, client);
-            }
-        }
-        
-        public List<InternetClient> GetAllClientsContaining(string str)
-        {
-            if (!File.Exists(BaseRepo.DbFIle))
-            {
-                BaseRepo.CreateDatabase();
-            }
-            
-            using (var cnn = BaseRepo.DbConnection())
-            {
-                cnn.Open();
-                string like = "'%" + str + "%'";
-                string sql =
-                    "SELECT * FROM InternetClient WHERE Name LIKE " + like + ";";
+                int id = cnn.Execute(sql, InternetClient);
 
-                return cnn.Query<InternetClient>(sql).ToList();
+                sql = "INSERT INTO InternetClient (ClientId, IpAddress) Values (@ClientId, @IpAddress)";
+                cnn.Execute(sql, new {ClientId = id, IpAddress = InternetClient.IpAddress,});
             }
         }
     }
