@@ -23,14 +23,14 @@ namespace NHibernate.Services
                 string like = "'%" + str + "%'";
                 string sql =
                     "SELECT * FROM Client WHERE Name LIKE " + like
-                    + " ORDER BY Name"
-                    + " LIMIT 10;";
-                   
+                                                            + " ORDER BY Name"
+                                                            + " LIMIT 10;";
+
 
                 return cnn.Query<Client>(sql).AsList();
             }
         }
-        
+
         public static List<Client> GetAllClients()
         {
             if (!File.Exists(BaseRepo.DbFIle))
@@ -43,7 +43,7 @@ namespace NHibernate.Services
                 cnn.Open();
                 string sql =
                     "SELECT * FROM Client ORDER BY Name";
-                   
+
 
                 return cnn.Query<Client>(sql).AsList();
             }
@@ -55,7 +55,7 @@ namespace NHibernate.Services
             {
                 BaseRepo.CreateDatabase();
             }
-            
+
             using (var cnn = BaseRepo.DbConnection())
             {
                 cnn.Open();
@@ -67,7 +67,6 @@ namespace NHibernate.Services
                 {
                     return Map(client, ipAddress);
                 }
-
             }
 
             return null;
@@ -79,13 +78,14 @@ namespace NHibernate.Services
             {
                 BaseRepo.CreateDatabase();
             }
-            
+
             var clients = new List<Client>();
 
             using (var cnn = BaseRepo.DbConnection())
             {
                 var objectInOrders =
-                    cnn.Query<OrderObject>("SELECT * FROM OrderObject WHERE ObjectId = @ObjectId", new {ObjectId = obj.Id}).ToList();
+                    cnn.Query<OrderObject>("SELECT * FROM OrderObject WHERE ObjectId = @ObjectId",
+                        new {ObjectId = obj.Id}).ToList();
 
                 var clientRepository = new ClientRepository();
                 var orderRepository = new OrderRepository();

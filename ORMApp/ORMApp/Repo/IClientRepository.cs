@@ -7,7 +7,5 @@ namespace NHibernate.Repo
     {
         Client GetClient(int id);
         void AddClient(Client client);
-        
-        
     }
 }

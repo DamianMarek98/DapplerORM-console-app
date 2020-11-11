@@ -31,7 +31,7 @@ namespace NHibernate.Services
                     cnn.Execute("DROP table OrderObject;");
                 }
             }
-            
+
             using (var cnn = DbConnection())
             {
                 cnn.Open();
@@ -42,14 +42,14 @@ namespace NHibernate.Services
                     Price                           integer,
                     InStock                         integer
                 )");
-                
+
                 cnn.Execute(@"create table Client
                 (
                     ID                                  INTEGER PRIMARY KEY AUTOINCREMENT,
                     Name                                varchar(100),
                     Address                             varchar(100)
                 )");
-                
+
                 cnn.Execute(@"create table InternetClient
                 (
                     ID                                  INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -58,7 +58,7 @@ namespace NHibernate.Services
                     
                     FOREIGN KEY (ClientId) REFERENCES Client (ID)
                 )");
-                
+
                 cnn.Execute(@"create table PlaceOrder
                 (
                     ID                                  INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -67,7 +67,7 @@ namespace NHibernate.Services
                     
                     FOREIGN KEY (ClientId) REFERENCES Client (ID)
                 )");
-                
+
                 cnn.Execute(@"create table OrderObject
                 (
                     ID                                  INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -79,7 +79,6 @@ namespace NHibernate.Services
                     FOREIGN KEY (ObjectId) REFERENCES Object (ID),
                     FOREIGN KEY (OrderId) REFERENCES PlaceOrder (ID)
                 )");
-                
             }
         }
     }

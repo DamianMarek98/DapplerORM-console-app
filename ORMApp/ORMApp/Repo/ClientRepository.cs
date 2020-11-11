@@ -38,6 +38,5 @@ namespace NHibernate.Repo
                 cnn.Execute(sql, client);
             }
         }
-        
     }
 }

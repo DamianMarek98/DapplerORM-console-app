@@ -31,7 +31,7 @@ namespace NHibernate.Repo
             {
                 BaseRepo.CreateDatabase();
             }
-            
+
             using (var cnn = BaseRepo.DbConnection())
             {
                 cnn.Open();
@@ -41,7 +41,7 @@ namespace NHibernate.Repo
                 cnn.Execute(sql, new {ClientId = order.ClientId, Completed = 0});
 
                 SQLiteCommand Command = new SQLiteCommand("select last_insert_rowid()", cnn);
-                Int64 LastRowID64 = (Int64)Command.ExecuteScalar();
+                Int64 LastRowID64 = (Int64) Command.ExecuteScalar();
                 int orderId = (int) LastRowID64;
 
                 sql = "INSERT INTO OrderObject (Amount, ObjectId, OrderId) Values (@Amount, @ObjectId, @OrderId);";
@@ -65,12 +65,13 @@ namespace NHibernate.Repo
             {
                 cnn.Open();
                 var ordersWithoutProducts = cnn.Query<Order>("SELECT * FROM PlaceOrder").ToList();
-                
+
                 foreach (Order order in ordersWithoutProducts)
                 {
-                    order.Objects = cnn.Query<OrderObject>("SELECT * FROM OrderObject WHERE OrderId = @OrderId", new {OrderId = order.Id})
+                    order.Objects = cnn.Query<OrderObject>("SELECT * FROM OrderObject WHERE OrderId = @OrderId",
+                            new {OrderId = order.Id})
                         .ToList();
-                    
+
                     orders.Add(order);
                 }
             }
@@ -90,10 +91,10 @@ namespace NHibernate.Repo
                     "SELECT SUM(Amount) FROM OrderObject WHERE OrderId = @OrderId";
                 amount = (int) cnn.Query<Int64>(sql, new {orderId}).FirstOrDefault();
             }
-            
+
             return amount;
         }
-        
+
         public static int GetTotalPrice(int orderId)
         {
             var total = 0;
@@ -110,7 +111,7 @@ namespace NHibernate.Repo
                     total += orderObj.Amount * objectRepository.GetObject(orderObj.ObjectId).Price;
                 }
             }
-            
+
             return total;
         }
     }

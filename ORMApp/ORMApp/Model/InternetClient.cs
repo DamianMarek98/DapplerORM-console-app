@@ -3,6 +3,6 @@
     public class InternetClient : Client
     {
         new
-        public string IpAddress { get; set; }
+            public string IpAddress { get; set; }
     }
 }

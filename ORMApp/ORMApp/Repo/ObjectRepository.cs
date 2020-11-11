@@ -13,12 +13,12 @@ namespace NHibernate.Repo
         public Object GetObject(int id)
         {
             if (!File.Exists(BaseRepo.DbFIle)) return null;
-            
+
             using (var cnn = BaseRepo.DbConnection())
             {
                 cnn.Open();
                 var result = cnn.Query<Object>(
-                    @"SELECT * FROM Object WHERE Id = @id", new { id }).FirstOrDefault();
+                    @"SELECT * FROM Object WHERE Id = @id", new {id}).FirstOrDefault();
                 return result;
             }
         }
@@ -29,7 +29,7 @@ namespace NHibernate.Repo
             {
                 BaseRepo.CreateDatabase();
             }
-            
+
             using (var cnn = BaseRepo.DbConnection())
             {
                 cnn.Open();
@@ -69,7 +69,6 @@ namespace NHibernate.Repo
             {
                 cnn.Open();
                 objects = cnn.Query<Object>("SELECT * FROM Object").ToList();
-
             }
 
 

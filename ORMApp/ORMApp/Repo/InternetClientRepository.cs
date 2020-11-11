@@ -25,7 +25,7 @@ namespace NHibernate.Repo
 
                 cnn.Execute(sql, InternetClient);
                 SQLiteCommand Command = new SQLiteCommand("select last_insert_rowid()", cnn);
-                Int64 LastRowID64 = (Int64)Command.ExecuteScalar();
+                Int64 LastRowID64 = (Int64) Command.ExecuteScalar();
                 int id = (int) LastRowID64;
 
                 sql = "INSERT INTO InternetClient (ClientId, IpAddress) Values (@ClientId, @IpAddress)";

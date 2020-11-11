@@ -15,7 +15,7 @@ namespace NHibernate.Services
             {
                 BaseRepo.CreateDatabase();
             }
-            
+
 
             using (var cnn = BaseRepo.DbConnection())
             {
@@ -26,7 +26,7 @@ namespace NHibernate.Services
                     foreach (var orderObject in order.Objects)
                     {
                         var obj = cnn.Query<Object>(
-                            @"SELECT * FROM Object WHERE Id = @id", new { id = orderObject.ObjectId }).FirstOrDefault();
+                            @"SELECT * FROM Object WHERE Id = @id", new {id = orderObject.ObjectId}).FirstOrDefault();
                         if (obj.InStock < orderObject.Amount)
                         {
                             transaction.Rollback();
@@ -38,7 +38,7 @@ namespace NHibernate.Services
                                 new {InStock = obj.InStock - orderObject.Amount, Id = obj.Id});
                         }
                     }
-		
+
                     cnn.Execute(@"UPDATE PlaceOrder SET Completed = @Completed WHERE ID = @Id;",
                         new {Completed = 1, Id = order.Id});
                     transaction.Commit();

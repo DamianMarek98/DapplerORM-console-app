@@ -24,9 +24,9 @@ namespace NHibernate.Repo
 
                 cnn.Execute(sql,
                     new {ClientId = order.ClientId, Completed = 0, IpAddress = order.IpAddress});
-                
+
                 SQLiteCommand Command = new SQLiteCommand("select last_insert_rowid()", cnn);
-                Int64 LastRowID64 = (Int64)Command.ExecuteScalar();
+                Int64 LastRowID64 = (Int64) Command.ExecuteScalar();
                 int orderId = (int) LastRowID64;
 
 

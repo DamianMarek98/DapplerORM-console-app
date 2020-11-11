@@ -63,7 +63,7 @@ namespace NHibernate
             obj.Price = 1;
             obj.InStock = 250;
             objectRepository.AddObject(obj);
-            
+
             var client = new Client();
             client.Address = "Wieszczycka 2";
             client.Name = "Zbyszek";
@@ -88,7 +88,7 @@ namespace NHibernate
             client.Address = "Grunwaldzka 123/3A";
             client.Name = "Dominik M";
             clientRepository.AddClient(client);
-            
+
             var internetClient = new InternetClient();
             internetClient.IpAddress = "123.231.23.2";
             internetClient.Name = "Wiesław a";
@@ -124,7 +124,7 @@ namespace NHibernate
             var clients = ClientService.GetAllClients();
 
             Random rnd = new Random();
-            
+
             for (int i = 0; i < 20; i++)
             {
                 var order = new Order();
@@ -135,10 +135,10 @@ namespace NHibernate
                 {
                     var orderObj = new OrderObject();
                     orderObj.ObjectId = objects.OrderBy(x => Guid.NewGuid()).ToList()[0].Id;
-                    orderObj.Amount = rnd.Next(1, objectRepository.GetObject(orderObj.ObjectId).InStock/2);
+                    orderObj.Amount = rnd.Next(1, objectRepository.GetObject(orderObj.ObjectId).InStock / 2);
                     order.Objects.Add(orderObj);
                 }
-                
+
                 orderRepository.AddOrder(order);
             }
         }

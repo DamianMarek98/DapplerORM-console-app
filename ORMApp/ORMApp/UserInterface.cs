@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
+using System.Threading;
 using NHibernate.Model;
 using NHibernate.Repo;
 using NHibernate.Services;
@@ -35,12 +35,14 @@ namespace NHibernate
                         {
                             ClientOrderCreator();
                         }
+
                         break;
                     case ConsoleKey.O:
                         if (_activeClient != null)
                         {
                             OrderSelection();
                         }
+
                         break;
                     default:
                         Console.Out.WriteLine("You pressed: " + currentKey.KeyChar + " which does nothing!");
@@ -61,13 +63,13 @@ namespace NHibernate
                 Console.WriteLine("Press number to choose client or letter to apply filter");
                 Console.WriteLine("Press esc to comeback to menu");
                 Console.WriteLine("");
-                Console.WriteLine("10 Clients: (Filter string: "+ findLetters +")");
+                Console.WriteLine("10 Clients: (Filter string: " + findLetters + ")");
                 foreach (var client in _clients)
                 {
                     Console.Out.WriteLine(iter + ". name: " + client.Name);
                     iter++;
                 }
-                
+
                 ConsoleKeyInfo currentKey = Console.ReadKey(true);
                 switch (currentKey.Key)
                 {
@@ -79,6 +81,7 @@ namespace NHibernate
                         {
                             findLetters = findLetters.Remove(findLetters.Length - 1);
                         }
+
                         break;
                     default:
                         if (char.IsNumber(currentKey.KeyChar))
@@ -90,6 +93,7 @@ namespace NHibernate
                                 _activeClient = _clients[num];
                             }
                         }
+
                         findLetters += currentKey.KeyChar;
                         break;
                 }
@@ -120,7 +124,8 @@ namespace NHibernate
                 int iter = 0;
                 foreach (var obj in objects)
                 {
-                    Console.Out.WriteLine(iter + ". name: " + obj.Description + " price: " + obj.Price + " (In stock: " + obj.InStock + ")");
+                    Console.Out.WriteLine(iter + ". name: " + obj.Description + " price: " + obj.Price +
+                                          " (In stock: " + obj.InStock + ")");
                     iter++;
                 }
 
@@ -131,10 +136,10 @@ namespace NHibernate
                         Console.Out.WriteLine("Type product number:");
                         string input = Console.ReadLine();
                         int number;
-                        if(!Int32.TryParse(input, out number))
+                        if (!Int32.TryParse(input, out number))
                         {
                             Console.Out.WriteLine("Not a valid number - try again!");
-                            System.Threading.Thread.Sleep(1000);
+                            Thread.Sleep(1000);
                         }
                         else
                         {
@@ -144,31 +149,32 @@ namespace NHibernate
                                 Console.Out.WriteLine("Type amount:");
                                 input = Console.ReadLine();
                                 int amount;
-                                if(!Int32.TryParse(input, out amount))
+                                if (!Int32.TryParse(input, out amount))
                                 {
                                     Console.Out.WriteLine("Not a valid amount - try again!");
-                                    System.Threading.Thread.Sleep(1000);
+                                    Thread.Sleep(1000);
                                 }
                                 else
                                 {
                                     var orderObj = new OrderObject();
                                     orderObj.ObjectId = obj.Id;
-                                    orderObj.Amount = ((amount > 0) ? amount :  1);
+                                    orderObj.Amount = ((amount > 0) ? amount : 1);
                                     orderObjects.Add(orderObj);
                                     if (orderObjects.Count != 1) orderInfo += ", ";
                                     orderInfo += obj.Description + " - " + amount;
                                 }
                             }
                         }
+
                         break;
                     case ConsoleKey.A:
                         Console.Out.WriteLine("Type product number:");
                         string inp = Console.ReadLine();
                         int num;
-                        if(!Int32.TryParse(inp, out num))
+                        if (!Int32.TryParse(inp, out num))
                         {
                             Console.Out.WriteLine("Not a valid number - try again!");
-                            System.Threading.Thread.Sleep(1000);
+                            Thread.Sleep(1000);
                         }
                         else
                         {
@@ -176,7 +182,9 @@ namespace NHibernate
                             {
                                 var obj = objects[num];
                                 var objectClients = ClientService.GetAllClientsWhoOrdered(obj);
-                                var toPrint = (objectClients.Count > 0) ? "Clients who ordered " + obj.Description + ": " : "Noone ordered " + obj.Description;
+                                var toPrint = (objectClients.Count > 0)
+                                    ? "Clients who ordered " + obj.Description + ": "
+                                    : "Noone ordered " + obj.Description;
                                 foreach (var c in objectClients)
                                 {
                                     if (objectClients.IndexOf(c) != 0)
@@ -186,11 +194,12 @@ namespace NHibernate
 
                                     toPrint += c.Name;
                                 }
-                                
+
                                 Console.WriteLine(toPrint);
-                                System.Threading.Thread.Sleep(3000);
+                                Thread.Sleep(3000);
                             }
                         }
+
                         break;
                     case ConsoleKey.P:
                         order.Objects = orderObjects;
@@ -203,6 +212,7 @@ namespace NHibernate
                         {
                             Console.Out.WriteLine("Order not placed - no products selected!!");
                         }
+
                         exit = true;
                         break;
                     case ConsoleKey.Escape:
@@ -235,11 +245,15 @@ namespace NHibernate
                     if (index >= iterFrom && index < iterTo)
                     {
                         Client client = _clientRepository.GetClient(order.ClientId);
-                        Console.WriteLine(index + 1 + ". Number of objects: " + order.GetNumberOfObjects() + " Total price: " + order.GetTotalPrice() + " Client: " + client.Name 
-                                          + ((ClientService.isInternetClient(client) ? " (internet) " : " (not internet) ")) + ((order.Completed ? "(completed) " : "(not completed) ")));
+                        Console.WriteLine(index + 1 + ". Number of objects: " + order.GetNumberOfObjects() +
+                                          " Total price: " + order.GetTotalPrice() + " Client: " + client.Name
+                                          + ((ClientService.isInternetClient(client)
+                                              ? " (internet) "
+                                              : " (not internet) ")) +
+                                          ((order.Completed ? "(completed) " : "(not completed) ")));
                     }
                 }
-                
+
                 ConsoleKeyInfo currentKey = Console.ReadKey(true);
                 switch (currentKey.Key)
                 {
@@ -252,6 +266,7 @@ namespace NHibernate
                             iterFrom += 5;
                             iterTo += 5;
                         }
+
                         break;
                     case ConsoleKey.P:
                         if (iterFrom > 0)
@@ -259,15 +274,16 @@ namespace NHibernate
                             iterFrom -= 5;
                             iterTo -= 5;
                         }
+
                         break;
                     case ConsoleKey.C:
                         Console.Out.WriteLine("Type order number:");
                         string input = Console.ReadLine();
                         int number;
-                        if(!Int32.TryParse(input, out number))
+                        if (!Int32.TryParse(input, out number))
                         {
                             Console.Out.WriteLine("Not a valid number - try again!");
-                            System.Threading.Thread.Sleep(1000);
+                            Thread.Sleep(1000);
                         }
                         else
                         {
@@ -299,16 +315,17 @@ namespace NHibernate
                             {
                                 Console.Out.WriteLine("Type only numbers that are visible!");
                             }
-                            
-                            System.Threading.Thread.Sleep(1000);
+
+                            Thread.Sleep(1000);
                         }
+
                         break;
                     default:
                         break;
                 }
             }
         }
-        
+
         private void DisplayBasicMenu()
         {
             Console.WriteLine("");
