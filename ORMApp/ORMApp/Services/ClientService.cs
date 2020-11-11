@@ -2,7 +2,9 @@
 using System.IO;
 using System.Linq;
 using Dapper;
+using NHibernate.Linq;
 using NHibernate.Model;
+using NHibernate.Repo;
 
 namespace NHibernate.Services
 {
@@ -69,6 +71,36 @@ namespace NHibernate.Services
             }
 
             return null;
+        }
+
+        public static List<Client> GetAllClientsWhoOrdered(Object obj)
+        {
+            if (!File.Exists(BaseRepo.DbFIle))
+            {
+                BaseRepo.CreateDatabase();
+            }
+            
+            var clients = new List<Client>();
+
+            using (var cnn = BaseRepo.DbConnection())
+            {
+                var objectInOrders =
+                    cnn.Query<OrderObject>("SELECT * FROM OrderObject WHERE ObjectId = @ObjectId", new {ObjectId = obj.Id}).ToList();
+
+                var clientRepository = new ClientRepository();
+                var orderRepository = new OrderRepository();
+                foreach (var objectInOrder in objectInOrders)
+                {
+                    var clientId = orderRepository.GetOrder(objectInOrder.OrderId).ClientId;
+                    var client = clientRepository.GetClient(clientId);
+                    if (!clients.Contains(client))
+                    {
+                        clients.Add(client);
+                    }
+                }
+            }
+
+            return clients;
         }
 
         public static bool isInternetClient(Client client)

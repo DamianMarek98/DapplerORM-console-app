@@ -120,6 +120,7 @@
     <Compile Include="Repo\OrderRepository.cs" />
     <Compile Include="Services\BaseRepo.cs" />
     <Compile Include="Services\ClientService.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
