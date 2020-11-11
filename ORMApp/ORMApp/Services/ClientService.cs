@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using Dapper;
-using NHibernate.Linq;
 using NHibernate.Model;
 using NHibernate.Repo;
 
