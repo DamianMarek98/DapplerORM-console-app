@@ -5,11 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65826dcf-307c-455f-a36d-ba5f32e5e22c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ORMApp/Services/OrderService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ORMApp/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ORMApp/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ORMApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ORMApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORMApp/ORMApp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ORMApp/ORMApp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORMApp/Services/ClientService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ORMApp/Services/ClientService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORMApp/UserInterface.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ORMApp/UserInterface.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +16,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/zmddd/Desktop/Studia/Semestr VII/ProgramowanieDotNet/Lab4/DapplerORM-console-app/ORMApp/ORMApp/UserInterface.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/zmddd/Desktop/Studia/Semestr VII/ProgramowanieDotNet/Lab4/DapplerORM-console-app/ORMApp/ORMApp/Services/ClientService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
@@ -111,7 +108,7 @@
       <updated>1604962477079</updated>
       <workItem from="1604962483129" duration="91000" />
       <workItem from="1605017379178" duration="11173000" />
-      <workItem from="1605087381797" duration="14549000" />
+      <workItem from="1605087381797" duration="14849000" />
     </task>
     <task id="LOCAL-00001" summary="Main project name change">
       <created>1604962543006</created>
@@ -148,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605098896340</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added complete order in transaction service method">
+      <created>1605102448367</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1605102448367</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,33 +167,34 @@
     <MESSAGE value="Added order model" />
     <MESSAGE value="Added order repository" />
     <MESSAGE value="added order preparation and order pagination" />
-    <option name="LAST_COMMIT_MESSAGE" value="added order preparation and order pagination" />
+    <MESSAGE value="Added complete order in transaction service method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added complete order in transaction service method" />
   </component>
   <component name="WindowStateProjectService">
     <state x="348" y="366" key="#SQL_Dialects" timestamp="1605027121796">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="348" y="366" key="#SQL_Dialects/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605027121796" />
-    <state x="430" y="87" key="CommitChangelistDialog2" timestamp="1605098895632">
+    <state x="430" y="87" key="CommitChangelistDialog2" timestamp="1605102447768">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="430" y="87" key="CommitChangelistDialog2/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605098895632" />
-    <state width="1877" height="393" key="GridCell.Tab.0.bottom" timestamp="1605102055753">
+    <state x="430" y="87" key="CommitChangelistDialog2/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102447768" />
+    <state width="1877" height="393" key="GridCell.Tab.0.bottom" timestamp="1605102391643">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="393" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102055753" />
-    <state width="1877" height="393" key="GridCell.Tab.0.center" timestamp="1605102055753">
+    <state width="1877" height="393" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102391643" />
+    <state width="1877" height="393" key="GridCell.Tab.0.center" timestamp="1605102391642">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="393" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102055753" />
-    <state width="1877" height="393" key="GridCell.Tab.0.left" timestamp="1605102055753">
+    <state width="1877" height="393" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102391642" />
+    <state width="1877" height="393" key="GridCell.Tab.0.left" timestamp="1605102391642">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="393" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102055753" />
-    <state width="1877" height="393" key="GridCell.Tab.0.right" timestamp="1605102055753">
+    <state width="1877" height="393" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102391642" />
+    <state width="1877" height="393" key="GridCell.Tab.0.right" timestamp="1605102391642">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="393" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102055753" />
+    <state width="1877" height="393" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102391642" />
     <state width="1877" height="379" key="GridCell.Tab.1.bottom" timestamp="1605101867234">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -270,10 +275,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="552" y="258" key="Vcs.Push.Dialog.v2/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605032130161" />
-    <state x="-1626" y="60" width="1646" height="1037" key="dock-window-1" timestamp="1605092281640">
+    <state x="-1726" y="65" width="1646" height="1037" key="dock-window-1" timestamp="1605102449259">
       <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
-    <state x="-1626" y="60" width="1646" height="1037" key="dock-window-1/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605092281640" />
+    <state x="-1726" y="65" width="1646" height="1037" key="dock-window-1/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102449259" />
     <state x="-7" y="0" width="974" height="1057" key="dock-window-2" timestamp="1605032100895">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

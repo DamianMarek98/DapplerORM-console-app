@@ -57,6 +57,10 @@ namespace NHibernate
             {
                 _clients = ClientService.GetAllClientsContaining(findLetters);
                 int iter = 0;
+                Console.WriteLine("");
+                Console.WriteLine("Press number to choose client or letter to apply filter");
+                Console.WriteLine("Press esc to comeback to menu");
+                Console.WriteLine("");
                 Console.WriteLine("10 Clients: (Filter string: "+ findLetters +")");
                 foreach (var client in _clients)
                 {
@@ -101,13 +105,17 @@ namespace NHibernate
             var order = new Order();
             order.ClientId = _activeClient.Id;
             var orderObjects = new List<OrderObject>();
-            var orderInfo = internetOrder ? internetClient.IpAddress + " " : "";
+            var orderInfo = internetOrder ? "Client ip: " + internetClient.IpAddress + " " : "";
             orderInfo += "products: ";
 
             while (!exit)
             {
+                Console.WriteLine("");
                 Console.WriteLine("Press s to type number of product to add to order");
+                Console.WriteLine("Press a to get all clients who ordered product");
                 Console.WriteLine("Press p to place order");
+                Console.WriteLine("Press esc to comeback to menu");
+                Console.WriteLine("");
                 Console.WriteLine(orderInfo);
                 int iter = 0;
                 foreach (var obj in objects)
@@ -153,6 +161,37 @@ namespace NHibernate
                             }
                         }
                         break;
+                    case ConsoleKey.A:
+                        Console.Out.WriteLine("Type product number:");
+                        string inp = Console.ReadLine();
+                        int num;
+                        if(!Int32.TryParse(inp, out num))
+                        {
+                            Console.Out.WriteLine("Not a valid number - try again!");
+                            System.Threading.Thread.Sleep(1000);
+                        }
+                        else
+                        {
+                            if (num >= 0 && num < objects.Count)
+                            {
+                                var obj = objects[num];
+                                var objectClients = ClientService.GetAllClientsWhoOrdered(obj);
+                                var toPrint = (objectClients.Count > 0) ? "Clients who ordered " + obj.Description + ": " : "Noone ordered " + obj.Description;
+                                foreach (var c in objectClients)
+                                {
+                                    if (objectClients.IndexOf(c) != 0)
+                                    {
+                                        toPrint += ", ";
+                                    }
+
+                                    toPrint += c.Name;
+                                }
+                                
+                                Console.WriteLine(toPrint);
+                                System.Threading.Thread.Sleep(3000);
+                            }
+                        }
+                        break;
                     case ConsoleKey.P:
                         order.Objects = orderObjects;
                         if (order.Objects.Count > 0)
@@ -187,6 +226,7 @@ namespace NHibernate
                 Console.WriteLine("");
                 Console.WriteLine("Press n for next page");
                 Console.WriteLine("Press p for previous page");
+                Console.WriteLine("Press c to complete order");
                 Console.WriteLine("Press esc to comeback to menu");
                 Console.WriteLine("");
                 foreach (var order in orders)
@@ -218,6 +258,39 @@ namespace NHibernate
                         {
                             iterFrom -= 5;
                             iterTo -= 5;
+                        }
+                        break;
+                    case ConsoleKey.C:
+                        Console.Out.WriteLine("Type order number:");
+                        string input = Console.ReadLine();
+                        int number;
+                        if(!Int32.TryParse(input, out number))
+                        {
+                            Console.Out.WriteLine("Not a valid number - try again!");
+                            System.Threading.Thread.Sleep(1000);
+                        }
+                        else
+                        {
+                            var index = number - 1;
+                            if (index < orders.Count && iterFrom <= index && iterTo > index)
+                            {
+                                var result = OrderService.placeOrder(orders[index]);
+                                if (result)
+                                {
+                                    Console.Out.WriteLine("Order completed successfully!");
+                                    orders = _orderRepository.GetAllOrders();
+                                }
+                                else
+                                {
+                                    Console.Out.WriteLine("Order completed unsuccessfully - not enough products in stock!");
+                                }
+                            }
+                            else
+                            {
+                                Console.Out.WriteLine("Type only numbers that are visible!");
+                            }
+                            
+                            System.Threading.Thread.Sleep(1000);
                         }
                         break;
                     default:
