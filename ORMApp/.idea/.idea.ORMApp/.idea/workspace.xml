@@ -22,6 +22,7 @@
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/zmddd/Desktop/Studia/Semestr VII/ProgramowanieDotNet/Lab4/DapplerORM-console-app/ORMApp/ORMApp/UserInterface.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
@@ -108,7 +109,7 @@
       <updated>1604962477079</updated>
       <workItem from="1604962483129" duration="91000" />
       <workItem from="1605017379178" duration="11173000" />
-      <workItem from="1605087381797" duration="14849000" />
+      <workItem from="1605087381797" duration="15019000" />
     </task>
     <task id="LOCAL-00001" summary="Main project name change">
       <created>1604962543006</created>
@@ -152,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605102448367</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added user interface option to complete order">
+      <created>1605102475821</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1605102475821</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,33 +176,34 @@
     <MESSAGE value="Added order repository" />
     <MESSAGE value="added order preparation and order pagination" />
     <MESSAGE value="Added complete order in transaction service method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added complete order in transaction service method" />
+    <MESSAGE value="Added user interface option to complete order" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added user interface option to complete order" />
   </component>
   <component name="WindowStateProjectService">
     <state x="348" y="366" key="#SQL_Dialects" timestamp="1605027121796">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="348" y="366" key="#SQL_Dialects/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605027121796" />
-    <state x="430" y="87" key="CommitChangelistDialog2" timestamp="1605102447768">
+    <state x="430" y="87" key="CommitChangelistDialog2" timestamp="1605102475132">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="430" y="87" key="CommitChangelistDialog2/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102447768" />
-    <state width="1877" height="393" key="GridCell.Tab.0.bottom" timestamp="1605102391643">
+    <state x="430" y="87" key="CommitChangelistDialog2/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102475132" />
+    <state width="1877" height="393" key="GridCell.Tab.0.bottom" timestamp="1605102506469">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="393" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102391643" />
-    <state width="1877" height="393" key="GridCell.Tab.0.center" timestamp="1605102391642">
+    <state width="1877" height="393" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102506469" />
+    <state width="1877" height="393" key="GridCell.Tab.0.center" timestamp="1605102506469">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="393" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102391642" />
-    <state width="1877" height="393" key="GridCell.Tab.0.left" timestamp="1605102391642">
+    <state width="1877" height="393" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102506469" />
+    <state width="1877" height="393" key="GridCell.Tab.0.left" timestamp="1605102506469">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="393" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102391642" />
-    <state width="1877" height="393" key="GridCell.Tab.0.right" timestamp="1605102391642">
+    <state width="1877" height="393" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102506469" />
+    <state width="1877" height="393" key="GridCell.Tab.0.right" timestamp="1605102506469">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="393" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102391642" />
+    <state width="1877" height="393" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1605102506469" />
     <state width="1877" height="379" key="GridCell.Tab.1.bottom" timestamp="1605101867234">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

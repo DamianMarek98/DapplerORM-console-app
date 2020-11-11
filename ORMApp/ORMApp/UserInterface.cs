@@ -274,15 +274,25 @@ namespace NHibernate
                             var index = number - 1;
                             if (index < orders.Count && iterFrom <= index && iterTo > index)
                             {
-                                var result = OrderService.placeOrder(orders[index]);
-                                if (result)
+                                var order = orders[index];
+                                if (order.Completed == false)
                                 {
-                                    Console.Out.WriteLine("Order completed successfully!");
-                                    orders = _orderRepository.GetAllOrders();
+                                    var result = OrderService.placeOrder(order);
+                                    if (result)
+                                    {
+                                        Console.Out.WriteLine("Order completed successfully!");
+                                        orders = _orderRepository.GetAllOrders();
+                                    }
+                                    else
+                                    {
+                                        Console.Out.WriteLine(
+                                            "Order completed unsuccessfully - not enough products in stock!");
+                                    }
                                 }
                                 else
                                 {
-                                    Console.Out.WriteLine("Order completed unsuccessfully - not enough products in stock!");
+                                    Console.Out.WriteLine(
+                                        "Cannot complete completed order!");
                                 }
                             }
                             else
