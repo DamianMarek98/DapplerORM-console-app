@@ -27,6 +27,8 @@ namespace NHibernate.Services
                     cnn.Execute("DROP table Object;");
                     cnn.Execute("DROP table InternetClient;");
                     cnn.Execute("DROP table Client;");
+                    cnn.Execute("DROP table PlaceOrder;");
+                    cnn.Execute("DROP table OrderObject;");
                 }
             }
             
@@ -57,11 +59,11 @@ namespace NHibernate.Services
                     FOREIGN KEY (ClientId) REFERENCES Client (ID)
                 )");
                 
-                cnn.Execute(@"create table Order
+                cnn.Execute(@"create table PlaceOrder
                 (
                     ID                                  INTEGER PRIMARY KEY AUTOINCREMENT,
                     ClientId                            integer,
-                    Completed                           bit,
+                    Completed                           integer,
                     
                     FOREIGN KEY (ClientId) REFERENCES Client (ID)
                 )");
@@ -75,7 +77,7 @@ namespace NHibernate.Services
                     IpAddress                           varchar(100),
                     
                     FOREIGN KEY (ObjectId) REFERENCES Object (ID),
-                    FOREIGN KEY (OrderId) REFERENCES Order (ID)
+                    FOREIGN KEY (OrderId) REFERENCES PlaceOrder (ID)
                 )");
                 
             }

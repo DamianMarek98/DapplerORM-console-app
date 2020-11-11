@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Dapper;
@@ -53,6 +54,26 @@ namespace NHibernate.Repo
                     cnn.Execute(sql, new {InStock = newNumber, Id = id});
                 }
             }
+        }
+
+        public List<Object> GetAllObjects()
+        {
+            if (!File.Exists(BaseRepo.DbFIle))
+            {
+                BaseRepo.CreateDatabase();
+            }
+
+            var objects = new List<Object>();
+
+            using (var cnn = BaseRepo.DbConnection())
+            {
+                cnn.Open();
+                objects = cnn.Query<Object>("SELECT * FROM Object").ToList();
+
+            }
+
+
+            return objects;
         }
     }
 }

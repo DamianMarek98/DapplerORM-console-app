@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using Dapper;
@@ -18,7 +20,7 @@ namespace NHibernate.Repo
             {
                 cnn.Open();
                 var result = cnn.Query<Order>(
-                    @"SELECT * FROM Order WHERE Id = @id", new {id}).FirstOrDefault();
+                    @"SELECT * FROM PlaceOrder WHERE Id = @id", new {id}).FirstOrDefault();
                 return result;
             }
         }
@@ -34,16 +36,46 @@ namespace NHibernate.Repo
             {
                 cnn.Open();
                 var sql =
-                    "INSERT INTO Order (ClientId, Completed) Values (@ClientId, @Completed);";
+                    "INSERT INTO PlaceOrder (ClientId, Completed) Values (@ClientId, @Completed);";
 
-                var orderId = cnn.Execute(sql, new {ClientId = order.ClientId, Completed = 0});
-                
+                cnn.Execute(sql, new {ClientId = order.ClientId, Completed = 0});
+
+                SQLiteCommand Command = new SQLiteCommand("select last_insert_rowid()", cnn);
+                Int64 LastRowID64 = (Int64)Command.ExecuteScalar();
+                int orderId = (int) LastRowID64;
+
                 sql = "INSERT INTO OrderObject (Amount, ObjectId, OrderId) Values (@Amount, @ObjectId, @OrderId);";
                 foreach (var orderObj in order.Objects)
                 {
                     cnn.Execute(sql, new {Amount = orderObj.Amount, ObjectId = orderObj.ObjectId, OrderId = orderId});
                 }
             }
+        }
+
+        public List<Order> GetAllOrders()
+        {
+            if (!File.Exists(BaseRepo.DbFIle))
+            {
+                BaseRepo.CreateDatabase();
+            }
+
+            var orders = new List<Order>();
+
+            using (var cnn = BaseRepo.DbConnection())
+            {
+                cnn.Open();
+                var ordersWithoutProducts = cnn.Query<Order>("SELECT * FROM PlaceOrder").ToList();
+                
+                foreach (Order order in ordersWithoutProducts)
+                {
+                    order.Objects = cnn.Query<OrderObject>("SELECT * FROM OrderObject WHERE OrderId = @OrderId", new {OrderId = order.Id})
+                        .ToList();
+                    
+                    orders.Add(order);
+                }
+            }
+
+            return orders;
         }
 
         public static int GetNumberOfObjects(int orderId)
@@ -55,7 +87,7 @@ namespace NHibernate.Repo
             using (var cnn = BaseRepo.DbConnection())
             {
                 var sql =
-                    "INSERT SUM(Amount) FROM OrderObject WHERE OrderId = @OrderId";
+                    "SELECT SUM(Amount) FROM OrderObject WHERE OrderId = @OrderId";
                 amount = (int) cnn.Query<Int64>(sql, new {orderId}).FirstOrDefault();
             }
             
@@ -71,7 +103,7 @@ namespace NHibernate.Repo
             using (var cnn = BaseRepo.DbConnection())
             {
                 var sql =
-                    "INSERT * FROM OrderObject WHERE OrderId = @OrderId";
+                    "SELECT * FROM OrderObject WHERE OrderId = @OrderId";
                 var objectRepository = new ObjectRepository();
                 foreach (var orderObj in cnn.Query<OrderObject>(sql, new {orderId}).ToList())
                 {

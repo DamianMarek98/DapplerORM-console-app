@@ -12,12 +12,14 @@ namespace NHibernate
         private Client _activeClient;
         private List<Client> _clients = new List<Client>();
         private readonly ClientRepository _clientRepository = new ClientRepository();
+        private readonly OrderRepository _orderRepository = new OrderRepository();
+        private readonly ObjectRepository _objectRepository = new ObjectRepository();
 
         public void Start()
         {
             while (true)
             {
-                DiplayBasicMenu();
+                DisplayBasicMenu();
 
                 var currentKey = Console.ReadKey(true);
                 switch (currentKey.Key)
@@ -27,6 +29,18 @@ namespace NHibernate
                         break;
                     case ConsoleKey.X:
                         _activeClient = null;
+                        break;
+                    case ConsoleKey.P:
+                        if (_activeClient != null)
+                        {
+                            ClientOrderCreator();
+                        }
+                        break;
+                    case ConsoleKey.O:
+                        if (_activeClient != null)
+                        {
+                            OrderSelection();
+                        }
                         break;
                     default:
                         Console.Out.WriteLine("You pressed: " + currentKey.KeyChar + " which does nothing!");
@@ -77,13 +91,148 @@ namespace NHibernate
                 }
             }
         }
+
+        private void ClientOrderCreator()
+        {
+            var internetClient = ClientService.GetInternetClient(_activeClient);
+            var internetOrder = internetClient != null;
+            var exit = false;
+            var objects = _objectRepository.GetAllObjects();
+            var order = new Order();
+            order.ClientId = _activeClient.Id;
+            var orderObjects = new List<OrderObject>();
+            var orderInfo = internetOrder ? internetClient.IpAddress + " " : "";
+            orderInfo += "products: ";
+
+            while (!exit)
+            {
+                Console.WriteLine("Press s to type number of product to add to order");
+                Console.WriteLine("Press p to place order");
+                Console.WriteLine(orderInfo);
+                int iter = 0;
+                foreach (var obj in objects)
+                {
+                    Console.Out.WriteLine(iter + ". name: " + obj.Description + " price: " + obj.Price + " (In stock: " + obj.InStock + ")");
+                    iter++;
+                }
+
+                ConsoleKeyInfo currentKey = Console.ReadKey(true);
+                switch (currentKey.Key)
+                {
+                    case ConsoleKey.S:
+                        Console.Out.WriteLine("Type product number:");
+                        string input = Console.ReadLine();
+                        int number;
+                        if(!Int32.TryParse(input, out number))
+                        {
+                            Console.Out.WriteLine("Not a valid number - try again!");
+                            System.Threading.Thread.Sleep(1000);
+                        }
+                        else
+                        {
+                            if (number >= 0 && number < objects.Count)
+                            {
+                                var obj = objects[number];
+                                Console.Out.WriteLine("Type amount:");
+                                input = Console.ReadLine();
+                                int amount;
+                                if(!Int32.TryParse(input, out amount))
+                                {
+                                    Console.Out.WriteLine("Not a valid amount - try again!");
+                                    System.Threading.Thread.Sleep(1000);
+                                }
+                                else
+                                {
+                                    var orderObj = new OrderObject();
+                                    orderObj.ObjectId = obj.Id;
+                                    orderObj.Amount = ((amount > 0) ? amount :  1);
+                                    orderObjects.Add(orderObj);
+                                    if (orderObjects.Count != 1) orderInfo += ", ";
+                                    orderInfo += obj.Description + " - " + amount;
+                                }
+                            }
+                        }
+                        break;
+                    case ConsoleKey.P:
+                        order.Objects = orderObjects;
+                        if (order.Objects.Count > 0)
+                        {
+                            _orderRepository.AddOrder(order);
+                            Console.Out.WriteLine("Placed order successfully!");
+                        }
+                        else
+                        {
+                            Console.Out.WriteLine("Order not placed - no products selected!!");
+                        }
+                        exit = true;
+                        break;
+                    case ConsoleKey.Escape:
+                        exit = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void OrderSelection()
+        {
+            var exit = false;
+            var iterFrom = 0; //to display from 1-5
+            var iterTo = 5;
+            var orders = _orderRepository.GetAllOrders();
+
+            while (!exit)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Press n for next page");
+                Console.WriteLine("Press p for previous page");
+                Console.WriteLine("Press esc to comeback to menu");
+                Console.WriteLine("");
+                foreach (var order in orders)
+                {
+                    var index = orders.IndexOf(order);
+                    if (index >= iterFrom && index < iterTo)
+                    {
+                        Client client = _clientRepository.GetClient(order.ClientId);
+                        Console.WriteLine(index + 1 + ". Number of objects: " + order.GetNumberOfObjects() + " Total price: " + order.GetTotalPrice() + " Client: " + client.Name 
+                                          + ((ClientService.isInternetClient(client) ? " (internet) " : " (not internet) ")) + ((order.Completed ? "(completed) " : "(not completed) ")));
+                    }
+                }
+                
+                ConsoleKeyInfo currentKey = Console.ReadKey(true);
+                switch (currentKey.Key)
+                {
+                    case ConsoleKey.Escape:
+                        exit = true;
+                        break;
+                    case ConsoleKey.N:
+                        if (iterFrom + 5 < orders.Count)
+                        {
+                            iterFrom += 5;
+                            iterTo += 5;
+                        }
+                        break;
+                    case ConsoleKey.P:
+                        if (iterFrom > 0)
+                        {
+                            iterFrom -= 5;
+                            iterTo -= 5;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
         
-        
-        private void DiplayBasicMenu()
+        private void DisplayBasicMenu()
         {
             Console.WriteLine("");
             Console.WriteLine("Active client - " + ((_activeClient != null) ? _activeClient.Name : "not selected!"));
+            Console.WriteLine("Press p to place order");
             Console.WriteLine("Press c for selecting active client");
+            Console.WriteLine("Press o to search orders");
             Console.WriteLine("Press x to unselect client");
         }
     }

@@ -1,6 +1,10 @@
-﻿using NHibernate.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using NHibernate.Model;
 using NHibernate.Repo;
 using NHibernate.Services;
+using Object = NHibernate.Model.Object;
 
 namespace NHibernate
 {
@@ -18,6 +22,7 @@ namespace NHibernate
             var internetClientRepository = new InternetClientRepository();
             var clientRepository = new ClientRepository();
             var objectRepository = new ObjectRepository();
+            var orderRepository = new OrderRepository();
             var obj = new Object();
             obj.Description = "Kabel usb";
             obj.Price = 2;
@@ -114,6 +119,28 @@ namespace NHibernate
             internetClient.Name = "Zuzanna K";
             internetClient.Address = "Marynarki polskiej 11/12";
             internetClientRepository.AddInternetClient(internetClient);
+
+            var objects = objectRepository.GetAllObjects();
+            var clients = ClientService.GetAllClients();
+
+            Random rnd = new Random();
+            
+            for (int i = 0; i < 20; i++)
+            {
+                var order = new Order();
+                order.ClientId = clients.OrderBy(x => Guid.NewGuid()).ToList()[0].Id;
+
+                int numberOfProducts = rnd.Next(1, 6);
+                for (int j = 0; j < numberOfProducts; j++)
+                {
+                    var orderObj = new OrderObject();
+                    orderObj.ObjectId = objects.OrderBy(x => Guid.NewGuid()).ToList()[0].Id;
+                    orderObj.Amount = rnd.Next(1, objectRepository.GetObject(orderObj.ObjectId).InStock/2);
+                    order.Objects.Add(orderObj);
+                }
+                
+                orderRepository.AddOrder(order);
+            }
         }
     }
 }

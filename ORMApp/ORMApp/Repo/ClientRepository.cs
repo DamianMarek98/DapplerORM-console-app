@@ -17,7 +17,7 @@ namespace NHibernate.Repo
             {
                 cnn.Open();
                 var result = cnn.Query<Client>(
-                    @"SELECT * FROM Client WHERE Id = @id AND IpAddress IS NULL", new {id}).FirstOrDefault();
+                    @"SELECT * FROM Client WHERE Id = @id", new {id}).FirstOrDefault();
                 return result;
             }
         }
